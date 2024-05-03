@@ -1,0 +1,155 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* Navbar */
+.Navbar-ul {
+  background-color: aquamarine;
+}
+
+.Navbar-ul li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.Navbar-ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  text-align: center;
+}
+
+/* Footer-Css */
+.Footer-section {
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  background-color: aquamarine;
+  width: 100%;
+}
+.right {
+  text-align: right;
+}
+
+/* Signup-page-css */
+
+.Register {
+  border: 1px solid rgb(231, 229, 229);
+  width: 400px;
+  height: 500px;
+  margin-left: 35%;
+  margin-top: 120px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(20, 20, 20, 0.2);
+}
+.heading {
+  margin-left: 140px;
+  margin-top: 10px;
+}
+
+.TextBox {
+  display: block;
+  margin: 40px 0;
+  margin-left: 50px;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.TextBox:focus {
+  outline: none;
+  border-color: rgb(68, 68, 241);
+}
+
+.Signup-btn {
+  margin-left: 120px;
+  width: 150px;
+  height: 50px;
+  background-color: rgb(68, 68, 241);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Signup-btn:hover {
+  background-color: #3345c1;
+}
+/* Login component css */
+
+.User-Login {
+  border: 1px solid rgb(231, 229, 229);
+  width: 400px;
+  height: 400px;
+  margin-left: 35%;
+  margin-top: 120px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(20, 20, 20, 0.2);
+}
+
+/* Add-product-component-css */
+.Add_heading {
+  margin-left: 90px;
+  margin-top: 10px;
+}
+.add-TextBox {
+  display: block;
+  margin: 20px 0;
+  margin-left: 50px;
+  width: 300px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+.addbtn{
+  margin: 30px;
+  margin-left: 120px;
+}
+
+.error {
+  color: red;
+  margin-top: -20px;
+  display: block;
+  margin-left: 51px;
+}
+
+/* This is product listing css */
+.productlist{
+  text-align: center;
+  margin-top: 40px;   
+}
+.productlist h1{
+margin-bottom: 20px;
+}
+.productlist ul li{
+  display: inline-block;
+  border: 1px solid #3345c1;
+  padding: 5px;
+  width: 150px;
+  
+}
+.productlist ul{
+  margin: 0;   
+} 
+.delete-btn{
+  border: 1px solid #3345c1;
+  border-radius: 2px;  
+}
+
+/* Update -component css */
+.update-heading {
+  margin-left: 61px;
+  margin-top: 10px;
+}
+
