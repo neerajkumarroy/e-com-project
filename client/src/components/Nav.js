@@ -10,8 +10,6 @@ function Nav() {
     localStorage.clear();
     navigate('/login');
   }
-
-
   return (
     <div>
       {

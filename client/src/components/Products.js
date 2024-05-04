@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Products = () => {
   const [productsList, setProductsList] = useState([]);
@@ -26,18 +26,38 @@ const Products = () => {
       });
       const data = await result.json();
       console.log(data);
-      if (data){
+      if (data) {
         alert("data deleted successfully...");
-        productList()
+        productList();
       }
     } catch (error) {
       console.error("Error deleting product:", error);
     }
   };
 
+  //Search Api call
+  const handelSearch = async (e) => {
+    const key = e.target.value;
+    if (key) {
+      try {
+        let result = await fetch(`http://localhost:7070/api/search/${key}`);
+        result = await result.json();
+        if (result) {
+          setProductsList(result);
+        }
+      } catch (error) {
+        console.error("Error searching product:", error);
+      }
+    } else {
+      productList();
+    }
+  };
+
   return (
     <div className="productlist">
       <h1>This is Products Component</h1>
+      <input className="Search-Input TextBox" type="text" placeholder="Search Item" onChange={handelSearch}></input>
+
       <ul>
         <li>S.no</li>
         <li>Name</li>
@@ -46,19 +66,23 @@ const Products = () => {
         <li>Company</li>
         <li>Operations</li>
       </ul>
-      {Array.isArray(productsList) && productsList.map((item, index) => (
-        <ul key={item.id}>
-          <li>{index + 1}</li>
-          <li>{item.name}</li>
-          <li>{item.price}</li>
-          <li>{item.category}</li>
-          <li>{item.company}</li>
-          <li>
-            <button className="delete-btn" onClick={() => handleDelete(item._id)}>Delete</button>
-            <Link to={"/update/"+item._id}>update</Link>
-          </li>
-        </ul>
-      ))}
+      {productsList.length > 0 ? (
+        productsList.map((item, index) => (
+          <ul key={item._id}>
+            <li>{index + 1}</li>
+            <li>{item.name}</li>
+            <li>{item.price}</li>
+            <li>{item.category}</li>
+            <li>{item.company}</li>
+            <li>
+              <button className="delete-btn" onClick={() => handleDelete(item._id)}>Delete</button>
+              <Link to={"/update/" + item._id}>update</Link>
+            </li>
+          </ul>
+        ))
+      ) : (
+        <h1>No Result Found</h1>
+      )}
     </div>
   );
 };

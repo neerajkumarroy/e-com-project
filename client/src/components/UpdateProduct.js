@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom'
+import { useParams,useNavigate} from 'react-router-dom'
 
 const UpdateProduct = () => {
     const [name, setName] = useState("");
@@ -7,6 +7,7 @@ const UpdateProduct = () => {
     const [category, setCategory] = useState("");
     const [company,setCompany] = useState("");
     const params = useParams();
+    const navvigate = useNavigate();
        
 //prifile Data
    const prifilData = async() =>{
@@ -22,6 +23,23 @@ const UpdateProduct = () => {
    useEffect(()=>{
     prifilData();
    },[])
+
+   const handelUpdate = async()=>{
+    console.log(name,price,category,company);
+    let result = await fetch(`http://localhost:7070/api/updateproduct/${params.id}`,{
+      method:'put',
+      body:JSON.stringify({name,price,category,company}),
+      headers:{
+        "content-Type":"application/json"
+      }
+    })
+    result = await result.json();
+    if(result)
+      {
+        navvigate("/");
+      }
+    
+   }
 
   return (
     <div className='Register'>
@@ -42,7 +60,7 @@ const UpdateProduct = () => {
         <input className='add-TextBox' type='text' placeholder='Product Company'
         value={company} onChange={(e)=>setCompany(e.target.value)}
          />
-        <button className='Signup-btn addbtn' type='button'>Update</button>
+        <button className='Signup-btn addbtn' type='button' onClick={handelUpdate}>Update</button>
       
     </div>
   )
