@@ -1,10 +1,10 @@
-import React, { useState,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const auth = localStorage.getItem('user');
@@ -14,29 +14,29 @@ const Login = () => {
   }, [navigate]);
 
   const handleLogin = async () => {
-    console.log(email, password);
+    // console.log(email, password);
     let result = await fetch('http://localhost:7070/api/login', {
       method: 'post',
-      body: JSON.stringify({email, password }),
+      body: JSON.stringify({ email, password }),
       headers: {
         'content-Type': 'application/json'
-      },
+      }
     });
 
     result = await result.json();
     console.log(result);
-    localStorage.setItem('user', JSON.stringify(result));
-    if (result.username) {
+    if (result.auth) {
+      localStorage.setItem('user', JSON.stringify(result.user));
+      localStorage.setItem("token",JSON.stringify(result.auth));
       navigate('/');
-    }else
-    {
-        alert("Please enter valide username and password")
+    } else {
+      alert("Please enter valide username and password")
     }
   };
 
   return (
     <div className='User-Login'>
-      <h1 className='heading'>Login</h1>    
+      <h1 className='heading'>Login</h1>
 
       <input className='TextBox' type='text' placeholder='Email'
         value={email}

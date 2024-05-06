@@ -6,7 +6,11 @@ const Products = () => {
 
   const productList = async () => {
     try {
-      const result = await fetch("http://localhost:7070/api/products");
+      const result = await fetch("http://localhost:7070/api/products",{
+        headers:{
+          authorization:JSON.parse(localStorage.getItem("token"))
+        }
+      });
       const data = await result.json();
       setProductsList(data);
     } catch (error) {
@@ -39,15 +43,12 @@ const Products = () => {
   const handelSearch = async (e) => {
     const key = e.target.value;
     if (key) {
-      try {
+    
         let result = await fetch(`http://localhost:7070/api/search/${key}`);
         result = await result.json();
         if (result) {
           setProductsList(result);
-        }
-      } catch (error) {
-        console.error("Error searching product:", error);
-      }
+        }      
     } else {
       productList();
     }
