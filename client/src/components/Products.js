@@ -8,7 +8,7 @@ const Products = () => {
     try {
       const result = await fetch("http://localhost:7070/api/products",{
         headers:{
-          authorization:JSON.parse(localStorage.getItem("token"))
+          authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
         }
       });
       const data = await result.json();
@@ -26,7 +26,10 @@ const Products = () => {
     try {
       console.log(id);
       const result = await fetch(`http://localhost:7070/api/deleterecord/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers:{
+          authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+        }
       });
       const data = await result.json();
       console.log(data);
@@ -44,7 +47,11 @@ const Products = () => {
     const key = e.target.value;
     if (key) {
     
-        let result = await fetch(`http://localhost:7070/api/search/${key}`);
+        let result = await fetch(`http://localhost:7070/api/search/${key}`,{
+          headers:{
+            authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+          }
+        });
         result = await result.json();
         if (result) {
           setProductsList(result);

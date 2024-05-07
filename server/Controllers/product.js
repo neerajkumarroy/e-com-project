@@ -53,4 +53,5 @@ const SearchProduct = async (req, res) => {
     res.send(data);
 }
 
-module.exports = { AddNewProduct, getAllProducts, deleteProduct, getproduct, UpdateProduct, SearchProduct };
+
+module.exports = { AddNewProduct, getAllProducts, deleteProduct, getproduct, UpdateProduct, SearchProduct};

@@ -12,7 +12,11 @@ const UpdateProduct = () => {
 //prifile Data
    const prifilData = async() =>{
     // console.log("neeraj-------",params);
-    let result = await fetch(`http://localhost:7070/api/product/${params.id}`)
+    let result = await fetch(`http://localhost:7070/api/product/${params.id}`,{
+      headers:{
+        authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+      }
+    })
     result = await result.json();
     setName(result.name);
     setPrice(result.price);
@@ -30,7 +34,9 @@ const UpdateProduct = () => {
       method:'put',
       body:JSON.stringify({name,price,category,company}),
       headers:{
-        "content-Type":"application/json"
+        "content-Type":"application/json",
+        authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+
       }
     })
     result = await result.json();

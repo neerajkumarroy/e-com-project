@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 const AddProduct = () => {
     const [name, setName] = useState("");
@@ -7,6 +7,7 @@ const AddProduct = () => {
     const [category, setCategory] = useState("");
     const [company,setCompany] = useState("");
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
 
     
 
@@ -22,13 +23,16 @@ const AddProduct = () => {
       method:'post',
       body:JSON.stringify({name,price,category,company}),
       headers:{
-        "content-Type":"Application/json"
+        "content-Type":"Application/json",
+        authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+
       }
     })
     result = await result.json();
     if(result)
     {
-      alert("Data Add Successfully...!")
+      alert("Data Add Successfully...!");
+      navigate('/')
     }    
    }
 
