@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 function Nav() {
   const navigate = useNavigate();
   const auth = localStorage.getItem('user');
-  console.log("neeraj",auth);
+  // console.log("neeraj",auth);
+  const authObj = JSON.parse(auth);
 
   const logout = () => {
     localStorage.clear();
@@ -20,7 +21,7 @@ function Nav() {
             <li><Link to='/add'>Add Products</Link></li>
             <li><Link to='/update'></Link></li>
             <li><Link to='/profile'>Profile</Link></li>
-            <li><Link onClick={logout} to='/login' >Logout ({JSON.parse(auth).username})</Link></li>         
+            <li><Link onClick={logout} to='/login' >Logout ({authObj.username})</Link></li>         
           </ul>
           :
           <ul className='Navbar-ul right'>

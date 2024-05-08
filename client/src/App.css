@@ -79,9 +79,18 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.btn{
+  margin-top: 14px;
+}
 
 .Signup-btn:hover {
   background-color: #3345c1;
+}
+.error1 {
+  color: red;
+  margin-top: -36px;
+  display: block;
+  margin-left: 51px;
 }
 /* Login component css */
 

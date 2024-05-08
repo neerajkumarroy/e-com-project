@@ -4,6 +4,7 @@ import {useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const[error,setError]=useState(false);
   const navigate = useNavigate(); 
 
   useEffect(() => {
@@ -15,6 +16,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     // console.log(email, password);
+    if(!email || !password)
+      {
+        setError(true);
+        return false;
+      }
     let result = await fetch('http://localhost:7070/api/login', {
       method: 'post',
       body: JSON.stringify({ email, password }),
@@ -41,10 +47,12 @@ const Login = () => {
       <input className='TextBox' type='text' placeholder='Email'
         value={email}
         onChange={(e) => setEmail(e.target.value)} />
+        {error && !email && <span className='error1'>*Please Enter valide Email</span>}
 
       <input className='TextBox' type='password' placeholder='Password'
         value={password}
         onChange={(e) => setPassword(e.target.value)} />
+        {error && !password && <span className='error1'>*Please Enter Valide Password</span>}
 
       <button className='Signup-btn' type='button' onClick={handleLogin} >Login</button>
     </div>
