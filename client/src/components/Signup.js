@@ -16,11 +16,24 @@ const Signup = () => {
   }, [navigate]);
 
   const handleSignup = async () => {
-    if(!username || !email || !password )
-      {
-        setError(true)
-          return false
-      } 
+    if (!username || !email || !password) {
+      setError(true);
+      return false;
+    } 
+    // Email validation
+    const emailvalidation = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailvalidation.test(email)) {
+      setError(true);
+      alert("Please enter a valid email address. like : test@test.com");
+      return false;
+    }
+    // Password validation
+    const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordPattern.test(password)) {
+      setError(true);
+      alert("Password must contain at least 6 characters, one uppercase letter, one number, and one special character.");
+      return false;
+    }
 
     console.log(username, email, password);
     let result = await fetch('http://localhost:7070/api/signup', {
@@ -32,12 +45,14 @@ const Signup = () => {
     });
 
     result = await result.json();
-    console.log(result);
+    console.log({"rrrrrrrr":result});
     localStorage.setItem('user', JSON.stringify(result.result));
     localStorage.setItem('token', JSON.stringify(result.auth));
 
     if (result) {
       navigate('/');
+    } else {
+      alert("hello");
     }
   };
 
