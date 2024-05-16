@@ -16,6 +16,7 @@ const Login = () => {
     }
   }, [navigate]);
 
+  //Login API Intigration
   const handleLogin = async () => {
     if (!email || !password) {
       setError(true);
