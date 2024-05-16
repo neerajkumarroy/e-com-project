@@ -41,8 +41,7 @@ const UpdateProduct = async (req, res) => {
 const SearchProduct = async (req, res) => {
     let key = req.params.key;
     let data = await ProductModel.find(
-        {
-            "$or": [
+        {            "$or": [
                 { "name": { $regex: key, $options: 'i' } },
                 { "category": { $regex: key, $options: 'i' } },
                 { "company": { $regex: key, $options: 'i' } }
